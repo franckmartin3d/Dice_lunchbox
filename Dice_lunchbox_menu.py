@@ -410,46 +410,35 @@ menuItems_creation = [
 
 
 #main menu
-\\to do
+#TODO  switch statements
+
+
+
 def main(menuState):
-    if menuState == "main":
-        # set the  header
-        header = header_main
-        menuItems = menuItems_main
+    def switch_header(menuState):
+        header = {
+            'main': header_main,
+            'storage': header_storage,
+            'lunch': header_lunch,
+            'items': header_items,
+            'stats': header_stats,
+            'list': header_list,
+            'creation': header_creation}
+            return header
 
-    # Storage menu
-    elif menuState == "storage":
-        # set the  header
-        header = header_storage
-        menuItems = menuItems_storage
+    def switch_menuItems(menuState):
+        menuItems = {
+            'main': menuItems_main,
+            'storage': menuItems_storage,
+            'lunch': menuItems_lunch,
+            'items': menuItems_Items,
+            'stats': menuItems_stats,
+            'list': menuItems_list,
+            'creation': menuItems_creation}
+        return  menuItems
 
-    # Lunch Menu
-    elif menuState == "lunch":
-        # set the header
-        header = header_lunch
-        menuItems = menuItems_lunch
-
-    #items Menu
-    elif menuState == "items":
-        # set the header
-        header = header_items
-        menuItems = menuItems_Items
-
-    # Stats
-    elif menuState == "stats":
-        # set the header
-        header = header_stats
-        menuItems = menuItems_stats
-
-    elif menuState == "list":
-        # set the header
-        header = header_list
-        menuItems = menuItems_list
-
-    elif menuState == "creation":
-        header = header_creation
-        menuItems = menuItems_creation
-
+    switch_header(menuState)
+    switch_menuItems(menuState)
     while True:
         subprocess.call("cls", shell=True)  # windows
         print(colorize(header, 'pink'))
