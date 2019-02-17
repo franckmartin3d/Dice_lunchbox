@@ -38,6 +38,17 @@ class Store(object):
 
 class FoodItem(object):
 
+    #create a food item
+    @staticmethod
+    def userinstance():
+        print("Creating a fooditem")
+        fooditem_instance = input("What is the food item call:\n")
+
+        fooditem_instance = FoodItem(fooditem_instance, input("enter your type\n"), input("Enter calories \n"))
+        print("--Food Item CREATED--")
+        input("Press [Enter] to continue...")
+        return fooditem_instance
+
     # properties
 
     def __init__(self, title, type, calories):
@@ -67,6 +78,9 @@ class FoodItem(object):
 
         else:
             Store.listDesert.append(self)
+
+
+
 
     def display(self):
         print("Item: " + self.title)
@@ -238,7 +252,7 @@ def main_lunchbox():
 def main_item():
     print("You select Item Menue")
     input("Press [Enter] to continue...")
-    main("item")
+    main("items")
 
 
 menuItems_main = [
@@ -247,7 +261,8 @@ menuItems_main = [
     {"Item Menu": main_item},
     {"Exit": exit}, ]
 
-# -------------------------------------Storage Menu----------------------------------------------------------------------
+
+# -------------------------------------Storage Menu---------------------------------------------------------------------
 
 def storage_create():
     print("You select Create a storage")
@@ -256,8 +271,9 @@ def storage_create():
     storageName = input("whats the name of your storage?\n")
     storage = Store(storageName)
     storage.display()
-
+    print ("this is storage " + storageName + "\n")
     input("Press [Enter] to continue...")
+    return storageName
     return storage
 
 
@@ -306,6 +322,7 @@ menuItems_lunch = [
 def items_createFoodItem():
     print("You select Create a food Item")
     input("Press [Enter] to continue...")
+    FoodItem.userinstance()
 
 def items_list():
     print("You select Create a food Item")
@@ -322,10 +339,14 @@ menuItems_Items = [
     { "List menu": items_list},
     { "Back": item_back},]
 
+
 #-------------------------------------stats Menu----------------------------------------------------------------------
+#Todo this is broken
 def stats_items():
-    print ("Selected 'How many item is in storage'")
+    print("Selected 'How many item is in storage'")
     input("Press [Enter] to continue...")
+    #print("this is storage name:" + storageName)
+    Store.display()
 
 def stats_list():
     print ("List Menu'")
@@ -346,8 +367,12 @@ menuItems_stats = [
 
 # -------------------------------------list Menu----------------------------------------------------------------------
 def list_Allitems():
+    #todo try to list all
     print("Selected 'How many item is in storage'")
     input("Press [Enter] to continue...")
+    print("\t---ALL ITEMS IN STORAGE---")
+    for i, val in enumerate(Store.listItem):
+        print("\t", i, val.title)
 
 
 def list_veg():
@@ -410,7 +435,7 @@ menuItems_creation = [
 
 
 #main menu
-\\to do
+#todo make it a list
 def main(menuState):
     if menuState == "main":
         # set the  header
